@@ -1,0 +1,29 @@
+name: Updating Client Broker Configs
+on:
+  push:
+    branches: [main]
+jobs:
+  Branch-Update-clients:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v2
+        with:
+          token: ${{ secrets.PAT_TOKEN }}
+
+      - name: Update Vesselnet Client Broker
+        run: |
+          git remote update
+          git fetch
+          git checkout vesselnet-nigeria-configs
+          git rebase main
+
+      - name: Update Xsolar Client Broker
+        run: |
+          git remote update
+          git fetch
+          git checkout xsolar-config
+          git rebase main
+
+      - run: echo "🎉 The job was automatically triggered by a ${{ github.event_name }} event."
+      - run: echo "🐧 This job is now running on a ${{ runner.os }} server hosted by GitHub!"
