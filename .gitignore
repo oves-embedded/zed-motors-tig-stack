@@ -1,10 +1,1 @@
 .env
-mine.txt
-telegraf.conf
-ca.crt
-ca.pem
-client.crt
-client.key
-clientcert.pem
-clientkey.pem
-/data
